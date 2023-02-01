@@ -33,23 +33,22 @@ app.get('/bruh', (req, res)=> {
 app.get('/weather', (req, res)=> {
   let searchQuery = req.query.searchQuery;
   console.log(searchQuery);
-  console.log(newWeatherData);
+  let foundCity = weatherData.find(city => city.city_name.toLowerCase() === searchQuery.toLowerCase())
 
-  let weatherObject = new Forecast(searchQuery);
-  let formatedForecast = weatherObject.getItems();
+    // console.log(foundCity.data)
 
-  res.status(201).send(formatedForecast);
+   let weatherArr = foundCity.data.map(obj => new Forecast(obj))
+   console.log(weatherArr)
+
+  res.status(201).send(weatherArr);
 })
 
 class Forecast{
-  constructor(searchQuery){
-  let newWeatherData = weatherData.find(weda => weda.city_name.toLowerCase() === searchQuery.toLowerCase());
-    this.data = newWeatherData;
+  constructor(day){
+    this.date = day.valid_date
+    this.description = day.weather.description
   }
 
-  getDateDescription(){
-    return {Date: newWeatherData.valid_date, description: newWeatherData.weather.description}
-  }
 }
 
 app.listen(PORT,()=> console.log(`listening on ${PORT}`))
