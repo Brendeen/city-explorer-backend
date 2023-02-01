@@ -19,3 +19,5 @@
 <!-- 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. --> -->
 
 ## Credit and Collaborations
+
+![WRR-cycle](./wrrc-lab-07.jpg)
