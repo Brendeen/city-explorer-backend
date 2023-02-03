@@ -20,4 +20,6 @@
 
 ## Credit and Collaborations
 
-![WRR-cycle](./wrrc-lab-07.jpg)
+![WRR-cycle](./img/wrrc-lab-07.jpg)
+
+![API to server](./img/step.png)
