@@ -60,7 +60,7 @@ app.get('/movies', async (req, res) => {
     
     let movieArr = response2.data.results.map(obj => new Movies(obj))
 
-    res.status(200).send(movieArr)
+    res.status(200).send(movieArr.slice(0, 5))
   }catch(error){
     res.status(500).send('Error has accured')
   }  
