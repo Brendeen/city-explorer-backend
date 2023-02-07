@@ -20,7 +20,7 @@ function movies(req, res) {
   axios.get(movieUrl)
     .then(data => {
       let formatedMovie = data.data.results.map(movObj => new Movies(movObj))
-      res.status(200).send(formatedMovie)
+      res.status(200).send(formatedMovie.slice(0, 5))
     })
     .catch(error => error.send('Error has accured'));
   
