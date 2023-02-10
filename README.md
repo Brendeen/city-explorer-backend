@@ -14,7 +14,10 @@
 
 ## Change Log
 
-01-28-2023 3:28: set yp basic wire frame of server.
+01-28-2023, set up basic wire frame of server.
+01-28-2023, finished functions and classes for calling api data.
+02-05-2023, refactored backend.
+02-09-2023, added caching feature.
 
 <!-- 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. --> -->
 
