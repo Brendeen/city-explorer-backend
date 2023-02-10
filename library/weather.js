@@ -1,6 +1,7 @@
 'use strict';
 
 const axios = require('axios');
+const cache = require('../cache')
 
 function weather(req, res){
   let lat = req.query.lat
@@ -21,14 +22,30 @@ function weather(req, res){
   //   res.status(500).send('Error has accured')
   // }
 
-  axios.get(weatherUrl)
+
+
+const key = `weather ` + lat + lon
+
+if(cache[key] && (Date.now() - cache[key].timestamp < 60000)) {
+  console.log('cache hit, sending data');
+  res.status(200).send(cache[key].data)
+}
+else{
+  console.log('cache miss, making new request and caching')
+  axios
+  .get(weatherUrl)
     .then(data => {
       let formatedWeather = data.data.data.map(weaObj => new Forecast(weaObj))
+      cache[key] = {};
+      cache[key].timestamp = Date.now();
+      cache[key].data = formatedWeather;
       res.status(200).send(formatedWeather)
     })
     .catch(error => error.send('Error has accured'));
-    
+  }
 };
+
+
 
 class Forecast {
   constructor(day) {
@@ -38,3 +55,6 @@ class Forecast {
 }
 
 module.exports = weather;
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
