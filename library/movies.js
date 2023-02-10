@@ -21,7 +21,7 @@ function movies(req, res) {
 
 const key = 'movie' + query
 
-if(cache[key] && (Date.now() - cache[key].timestamp < 60000)) {
+if(cache[key] && (Date.now() - cache[key].timestamp < 2.628e+9)) {
   console.log('cache hit, sending data');
   res.status(200).send(cache[key].data)
 }

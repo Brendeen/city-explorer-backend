@@ -26,7 +26,7 @@ function weather(req, res){
 
 const key = `weather ` + lat + lon
 
-if(cache[key] && (Date.now() - cache[key].timestamp < 60000)) {
+if(cache[key] && (Date.now() - cache[key].timestamp < 300000)) {
   console.log('cache hit, sending data');
   res.status(200).send(cache[key].data)
 }
